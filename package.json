@@ -1,14 +1,18 @@
 {
   "name": "ts-schemaregistry",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "Fully typed API client for the Confluent Schema Registry.",
+  "main": "./src/index.ts",
+  "keywords": ["confluent","schema-registry", "schema", "registry", "typescript", "api", "client", "zod","ts-rest"],
+  "author": "unaussprechlich",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unaussprechlich/ts-schemaregistry"
+  },
   "scripts": {
 
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@ts-rest/core": "^3.26.4",
     "axios": "^1.4.0",
