@@ -11,7 +11,7 @@
     "url": "https://github.com/unaussprechlich/ts-schemaregistry"
   },
   "scripts": {
-
+    "publish": "npm publish --access public"
   },
   "dependencies": {
     "@ts-rest/core": "^3.26.4",

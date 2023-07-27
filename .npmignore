@@ -1,7 +1,12 @@
+.eslintrc.js
+.prettierignore
+.prettierrc
+
 ### Git template
 # Created by git for backups. To disable backups in Git:
 # $ git config --global mergetool.keepBackup false
 *.orig
+.git/
 
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
@@ -148,6 +153,8 @@ dist
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+.idea/
 
 # User-specific stuff
 .idea/**/workspace.xml
