@@ -1,0 +1,29 @@
+{
+  "name": "ts-schemaregistry",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@ts-rest/core": "^3.26.4",
+    "axios": "^1.4.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.0",
+    "@types/node": "^20.4.5",
+    "@types/prettier": "^2.7.3",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint-config-prettier" : "^8.9.0",
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6",
+    "vitest": "^0.33.0"
+  }
+}
