@@ -9,7 +9,7 @@ import contexts from './routers/contexts';
 
 const c = initContract();
 
-export const Contract = c.router(
+export const SchemaRegistryContract = c.router(
   {
     schemas: schemas(c),
     subjects: subjects(c),

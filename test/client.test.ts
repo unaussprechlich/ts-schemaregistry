@@ -1,7 +1,7 @@
 import { assert, describe, expect, it } from 'vitest';
-import { Client } from '../src';
+import { SchemaRegistryApi } from '../lib';
 
-const registry = Client({
+const registry = new SchemaRegistryApi({
   baseUrl: 'http://localhost:8081',
 });
 
@@ -23,8 +23,20 @@ const TEST_SCHEMA = {
 };
 
 describe('Test: ConfluentSchemaRegistryAdapter.ts', () => {
+  it('GET /ids/:id', async () => {
+    const result = await registry.client.schemas.ids.id.get({
+      params: { id: 1 },
+    });
+
+    assert.equal(result.status, 200);
+
+    if (result.status === 200) {
+      expect(result.body).toBeTypeOf('string');
+    }
+  });
+
   it('GET /schemas/types', async () => {
-    const result = await registry.schemas.types.get();
+    const result = await registry.client.schemas.types.get();
 
     assert.equal(result.status, 200);
 
@@ -34,7 +46,7 @@ describe('Test: ConfluentSchemaRegistryAdapter.ts', () => {
   });
 
   it('POST /subjects/:subject/versions', async () => {
-    const result = await registry.subjects.subject.versions.post({
+    const result = await registry.client.subjects.subject.versions.post({
       params: { subject: TEST_SUBJECT },
       body: TEST_SCHEMA,
     });
@@ -47,7 +59,7 @@ describe('Test: ConfluentSchemaRegistryAdapter.ts', () => {
   });
 
   it('GET /subjects', async () => {
-    const result = await registry.subjects.get();
+    const result = await registry.client.subjects.get();
 
     expect(result.status).toBe(200);
 
@@ -59,7 +71,7 @@ describe('Test: ConfluentSchemaRegistryAdapter.ts', () => {
   });
 
   it('GET /subjects/:subject/versions', async () => {
-    const result = await registry.subjects.subject.versions.get({
+    const result = await registry.client.subjects.subject.versions.get({
       params: { subject: TEST_SUBJECT },
     });
 

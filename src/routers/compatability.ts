@@ -1,6 +1,7 @@
 import { initContract } from '@ts-rest/core';
 import * as z from 'zod';
-import { ConfluentError, PathParams, Schema } from '../types';
+import { PathParams, Schema } from '../types';
+import { SchemaRegistryErrors } from '../SchemaRegistryErrors';
 
 export default function (c: ReturnType<typeof initContract>) {
   return c.router(
@@ -24,9 +25,9 @@ export default function (c: ReturnType<typeof initContract>) {
                 200: z.object({
                   is_compatible: z.boolean(),
                 }),
-                404: ConfluentError[40401],
-                422: ConfluentError[42201],
-                500: ConfluentError[50001],
+                404: SchemaRegistryErrors[40401],
+                422: SchemaRegistryErrors[42201],
+                500: SchemaRegistryErrors[50001],
               },
             },
             version: {
@@ -47,9 +48,15 @@ export default function (c: ReturnType<typeof initContract>) {
                   200: z.object({
                     is_compatible: z.boolean(),
                   }),
-                  404: z.union([ConfluentError[40401], ConfluentError[40402]]),
-                  422: z.union([ConfluentError[42201], ConfluentError[42202]]),
-                  500: ConfluentError[50001],
+                  404: z.union([
+                    SchemaRegistryErrors[40401],
+                    SchemaRegistryErrors[40402],
+                  ]),
+                  422: z.union([
+                    SchemaRegistryErrors[42201],
+                    SchemaRegistryErrors[42202],
+                  ]),
+                  500: SchemaRegistryErrors[50001],
                 },
               },
             },

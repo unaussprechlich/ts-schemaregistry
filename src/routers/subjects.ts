@@ -1,6 +1,7 @@
 import { initContract } from '@ts-rest/core';
 import * as z from 'zod';
-import { ConfluentError, PathParams, Schema } from '../types';
+import { PathParams, Schema } from '../types';
+import { SchemaRegistryErrors } from '../SchemaRegistryErrors';
 
 export default function (c: ReturnType<typeof initContract>) {
   return c.router(
@@ -15,7 +16,7 @@ export default function (c: ReturnType<typeof initContract>) {
         }),
         responses: {
           200: z.array(z.string()),
-          500: ConfluentError[50001],
+          500: SchemaRegistryErrors[50001],
         },
       },
 
@@ -34,8 +35,8 @@ export default function (c: ReturnType<typeof initContract>) {
           body: z.undefined(),
           responses: {
             200: z.array(z.number()),
-            404: ConfluentError[40401],
-            500: ConfluentError[50001],
+            404: SchemaRegistryErrors[40401],
+            500: SchemaRegistryErrors[50001],
           },
         },
         post: {
@@ -57,12 +58,12 @@ export default function (c: ReturnType<typeof initContract>) {
               version: z.number().int(),
               schema: z.string(),
             }),
-            409: ConfluentError[409],
-            422: ConfluentError[42201],
+            409: SchemaRegistryErrors[409],
+            422: SchemaRegistryErrors[42201],
             500: z.union([
-              ConfluentError[50001],
-              ConfluentError[50002],
-              ConfluentError[50003],
+              SchemaRegistryErrors[50001],
+              SchemaRegistryErrors[50002],
+              SchemaRegistryErrors[50003],
             ]),
           },
         },
@@ -77,8 +78,8 @@ export default function (c: ReturnType<typeof initContract>) {
             }),
             responses: {
               200: z.array(z.number()),
-              404: ConfluentError[40401],
-              500: ConfluentError[50001],
+              404: SchemaRegistryErrors[40401],
+              500: SchemaRegistryErrors[50001],
             },
           },
           post: {
@@ -97,12 +98,12 @@ export default function (c: ReturnType<typeof initContract>) {
               200: z.object({
                 id: z.number().int(),
               }),
-              409: ConfluentError[409],
-              422: ConfluentError[42201],
+              409: SchemaRegistryErrors[409],
+              422: SchemaRegistryErrors[42201],
               500: z.union([
-                ConfluentError[50001],
-                ConfluentError[50002],
-                ConfluentError[50003],
+                SchemaRegistryErrors[50001],
+                SchemaRegistryErrors[50002],
+                SchemaRegistryErrors[50003],
               ]),
             },
           },
@@ -124,9 +125,12 @@ export default function (c: ReturnType<typeof initContract>) {
                   schemaType: z.string(),
                   schema: z.string(),
                 }),
-                404: z.union([ConfluentError[40401], ConfluentError[40402]]),
-                422: ConfluentError[42202],
-                500: ConfluentError[50001],
+                404: z.union([
+                  SchemaRegistryErrors[40401],
+                  SchemaRegistryErrors[40402],
+                ]),
+                422: SchemaRegistryErrors[42202],
+                500: SchemaRegistryErrors[50001],
               },
             },
             delete: {
@@ -144,9 +148,12 @@ export default function (c: ReturnType<typeof initContract>) {
               body: z.undefined(),
               responses: {
                 200: z.number().int(),
-                404: z.union([ConfluentError[40401], ConfluentError[40402]]),
-                422: ConfluentError[42202],
-                500: ConfluentError[50001],
+                404: z.union([
+                  SchemaRegistryErrors[40401],
+                  SchemaRegistryErrors[40402],
+                ]),
+                422: SchemaRegistryErrors[42202],
+                500: SchemaRegistryErrors[50001],
               },
             },
             schema: {
@@ -161,9 +168,12 @@ export default function (c: ReturnType<typeof initContract>) {
                 }),
                 responses: {
                   200: z.string(),
-                  404: z.union([ConfluentError[40401], ConfluentError[40402]]),
-                  422: ConfluentError[42202],
-                  500: ConfluentError[50001],
+                  404: z.union([
+                    SchemaRegistryErrors[40401],
+                    SchemaRegistryErrors[40402],
+                  ]),
+                  422: SchemaRegistryErrors[42202],
+                  500: SchemaRegistryErrors[50001],
                 },
               },
             },
@@ -179,8 +189,8 @@ export default function (c: ReturnType<typeof initContract>) {
                 }),
                 responses: {
                   200: z.array(z.number().int()),
-                  404: ConfluentError[40401],
-                  500: ConfluentError[50001],
+                  404: SchemaRegistryErrors[40401],
+                  500: SchemaRegistryErrors[50001],
                 },
               },
             },

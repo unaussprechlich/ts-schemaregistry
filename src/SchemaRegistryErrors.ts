@@ -1,6 +1,30 @@
 import * as z from 'zod';
 
-export const ConfluentError = {
+export class SchemaRegistryError extends Error {
+  constructor(
+    contract: {
+      method: string;
+      path: string;
+    },
+    request: {
+      params?: { [key: string]: unknown };
+      query?: { [key: string]: unknown };
+      body?: unknown;
+    },
+    response: {
+      status: number;
+      body: { error_code?: number; message?: string } | unknown;
+    },
+  ) {
+    super(
+      `[${response.status}]${contract.method} ${contract.path}
+      \n   Request: ${JSON.stringify(request)}
+      \n   Response: ${JSON.stringify(response)}`,
+    );
+  }
+}
+
+export const SchemaRegistryErrors = {
   create: create,
   //404
   40401: create(40401, 'Subject not found'),
@@ -31,7 +55,10 @@ export const ConfluentError = {
   50003: create(50003, 'Error while forwarding the request to the primary'),
 };
 
-export function create(code: number, message: string) {
+export function create<
+  Code extends number = number,
+  Message extends string = string,
+>(code: Code, message: Message) {
   return z.object({
     error_code: z.literal(code),
     message: z.literal(message),

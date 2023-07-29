@@ -1,11 +1,7 @@
 import { initContract } from '@ts-rest/core';
 import * as z from 'zod';
-import {
-  ConfluentError,
-  Exporter,
-  ExporterConfig,
-  ExporterStatus,
-} from '../types';
+import { Exporter, ExporterConfig, ExporterStatus } from '../types';
+import { SchemaRegistryErrors } from '../SchemaRegistryErrors';
 
 export default function (c: ReturnType<typeof initContract>) {
   return c.router(
@@ -33,11 +29,11 @@ export default function (c: ReturnType<typeof initContract>) {
             name: z.string(),
           }),
           409: z.union([
-            ConfluentError[40950],
-            ConfluentError[40951],
-            ConfluentError[40952],
-            ConfluentError[40960],
-            ConfluentError[40964],
+            SchemaRegistryErrors[40950],
+            SchemaRegistryErrors[40951],
+            SchemaRegistryErrors[40952],
+            SchemaRegistryErrors[40960],
+            SchemaRegistryErrors[40964],
           ]),
         },
       },
@@ -51,7 +47,7 @@ export default function (c: ReturnType<typeof initContract>) {
           }),
           responses: {
             200: Exporter,
-            404: ConfluentError[40450],
+            404: SchemaRegistryErrors[40450],
           },
         },
         put: {
@@ -71,7 +67,10 @@ export default function (c: ReturnType<typeof initContract>) {
             200: z.object({
               name: z.string(),
             }),
-            409: z.union([ConfluentError[40952], ConfluentError[40963]]),
+            409: z.union([
+              SchemaRegistryErrors[40952],
+              SchemaRegistryErrors[40963],
+            ]),
           },
         },
         delete: {
@@ -84,7 +83,7 @@ export default function (c: ReturnType<typeof initContract>) {
           body: z.undefined(),
           responses: {
             200: z.undefined(),
-            404: ConfluentError[40450],
+            404: SchemaRegistryErrors[40450],
           },
         },
         config: {
@@ -97,7 +96,7 @@ export default function (c: ReturnType<typeof initContract>) {
             }),
             responses: {
               200: ExporterConfig,
-              404: ConfluentError[40450],
+              404: SchemaRegistryErrors[40450],
             },
           },
           put: {
@@ -112,8 +111,8 @@ export default function (c: ReturnType<typeof initContract>) {
               200: z.object({
                 name: z.string(),
               }),
-              404: ConfluentError[40450],
-              409: ConfluentError[40963],
+              404: SchemaRegistryErrors[40450],
+              409: SchemaRegistryErrors[40963],
             },
           },
         },
@@ -127,7 +126,7 @@ export default function (c: ReturnType<typeof initContract>) {
             }),
             responses: {
               200: ExporterStatus,
-              404: ConfluentError[40450],
+              404: SchemaRegistryErrors[40450],
             },
           },
         },
@@ -144,8 +143,8 @@ export default function (c: ReturnType<typeof initContract>) {
               200: z.object({
                 name: z.string(),
               }),
-              404: ConfluentError[40450],
-              409: ConfluentError[40962],
+              404: SchemaRegistryErrors[40450],
+              409: SchemaRegistryErrors[40962],
             },
           },
         },
@@ -162,8 +161,8 @@ export default function (c: ReturnType<typeof initContract>) {
               200: z.object({
                 name: z.string(),
               }),
-              404: ConfluentError[40450],
-              409: ConfluentError[40963],
+              404: SchemaRegistryErrors[40450],
+              409: SchemaRegistryErrors[40963],
             },
           },
         },
@@ -179,8 +178,8 @@ export default function (c: ReturnType<typeof initContract>) {
             200: z.object({
               name: z.string(),
             }),
-            404: ConfluentError[40450],
-            409: ConfluentError[40961],
+            404: SchemaRegistryErrors[40450],
+            409: SchemaRegistryErrors[40961],
           },
         },
       },

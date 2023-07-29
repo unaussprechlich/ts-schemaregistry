@@ -1,6 +1,7 @@
 import { initContract } from '@ts-rest/core';
 import * as z from 'zod';
-import { PathParams, ConfluentError, Compatability } from '../types';
+import { PathParams, Compatability } from '../types';
+import { SchemaRegistryErrors } from '../SchemaRegistryErrors';
 
 export default function (c: ReturnType<typeof initContract>) {
   return c.router(
@@ -16,8 +17,11 @@ export default function (c: ReturnType<typeof initContract>) {
           200: z.object({
             compatibility: Compatability,
           }),
-          422: ConfluentError[42203],
-          500: z.union([ConfluentError[50001], ConfluentError[50003]]),
+          422: SchemaRegistryErrors[42203],
+          500: z.union([
+            SchemaRegistryErrors[50001],
+            SchemaRegistryErrors[50003],
+          ]),
         },
       },
       get: {
@@ -28,7 +32,7 @@ export default function (c: ReturnType<typeof initContract>) {
           200: z.object({
             compatibility: Compatability,
           }),
-          500: ConfluentError[50001],
+          500: SchemaRegistryErrors[50001],
         },
       },
       subject: {
@@ -49,8 +53,11 @@ export default function (c: ReturnType<typeof initContract>) {
             200: z.object({
               compatibility: Compatability,
             }),
-            422: ConfluentError[42203],
-            500: z.union([ConfluentError[50001], ConfluentError[50003]]),
+            422: SchemaRegistryErrors[42203],
+            500: z.union([
+              SchemaRegistryErrors[50001],
+              SchemaRegistryErrors[50003],
+            ]),
           },
         },
         get: {
@@ -67,8 +74,8 @@ export default function (c: ReturnType<typeof initContract>) {
             200: z.object({
               compatibility: Compatability,
             }),
-            404: ConfluentError[40401],
-            500: ConfluentError[50001],
+            404: SchemaRegistryErrors[40401],
+            500: SchemaRegistryErrors[50001],
           },
         },
         delete: {
@@ -83,8 +90,8 @@ export default function (c: ReturnType<typeof initContract>) {
             200: z.object({
               compatibility: Compatability,
             }),
-            404: ConfluentError[40401],
-            500: ConfluentError[50001],
+            404: SchemaRegistryErrors[40401],
+            500: SchemaRegistryErrors[50001],
           },
         },
       },

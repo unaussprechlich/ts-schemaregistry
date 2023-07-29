@@ -1,6 +1,7 @@
 import { initContract } from '@ts-rest/core';
 import { z } from 'zod';
-import { ConfluentError, Mode } from '../types';
+import { Mode } from '../types';
+import { SchemaRegistryErrors } from '../SchemaRegistryErrors';
 
 export default function (c: ReturnType<typeof initContract>) {
   return c.router(
@@ -11,7 +12,7 @@ export default function (c: ReturnType<typeof initContract>) {
         summary: 'Get the current mode for Schema Registry at a global level.',
         responses: {
           200: z.object({ mode: Mode }),
-          500: ConfluentError[50001],
+          500: SchemaRegistryErrors[50001],
         },
       },
       put: {
@@ -26,7 +27,7 @@ export default function (c: ReturnType<typeof initContract>) {
         }),
         responses: {
           200: z.object({ mode: Mode }),
-          500: ConfluentError[50001],
+          500: SchemaRegistryErrors[50001],
         },
       },
       subject: {
@@ -39,8 +40,8 @@ export default function (c: ReturnType<typeof initContract>) {
           }),
           responses: {
             200: z.object({ mode: Mode }),
-            404: ConfluentError[40401],
-            500: ConfluentError[50001],
+            404: SchemaRegistryErrors[40401],
+            500: SchemaRegistryErrors[50001],
           },
         },
         put: {
@@ -58,9 +59,9 @@ export default function (c: ReturnType<typeof initContract>) {
           }),
           responses: {
             200: z.object({ mode: Mode }),
-            404: ConfluentError[40401],
-            422: ConfluentError[42204],
-            500: ConfluentError[50001],
+            404: SchemaRegistryErrors[40401],
+            422: SchemaRegistryErrors[42204],
+            500: SchemaRegistryErrors[50001],
           },
         },
         delete: {
@@ -73,8 +74,8 @@ export default function (c: ReturnType<typeof initContract>) {
           body: z.undefined(),
           responses: {
             200: z.object({ mode: Mode }),
-            404: ConfluentError[40401],
-            500: ConfluentError[50001],
+            404: SchemaRegistryErrors[40401],
+            500: SchemaRegistryErrors[50001],
           },
         },
       },

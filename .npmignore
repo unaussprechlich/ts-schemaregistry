@@ -1,6 +1,9 @@
 .eslintrc.js
 .prettierignore
 .prettierrc
+.eslintignore
+src
+test
 
 ### Git template
 # Created by git for backups. To disable backups in Git:
@@ -225,7 +228,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-# Editor-based Rest Client
+# Editor-based Rest SchemaRegistryClient
 .idea/httpRequests
 
 # Android studio 3.1+ serialized cache file

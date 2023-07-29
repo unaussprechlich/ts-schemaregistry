@@ -1,4 +1,3 @@
-export * from './ConfluentError';
 export * from './Compatability';
 export * from './Metadata';
 export * from './References';
