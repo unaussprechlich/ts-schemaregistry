@@ -12,7 +12,7 @@ is a fully typed REST API client for the [confluent-schema-registry](https://git
 ```typescript
 import { SchemaRegistryClient } from 'ts-schemaregistry';
 
-const registry = new SchemaRegistryApi({
+const registry = new SchemaRegistryClient({
   baseUrl: 'http://localhost:8081',
 });
 
@@ -20,8 +20,8 @@ const result = await registry.client.subjects.get();
 
 if(result.status === 200) {// result.body as z.array(z.string)
   console.log(result.body) // ['subject1', 'subject2', ...]
-} else if(result.status === 500) { // result.body as SchemaRegistryErrors[50001]
-  console.log(result.body) // { errorCode: 50001, message: 'Subject not found.' }
+} else if(result.status === 404) { // result.body as SchemaRegistryErrors[40401]
+  console.log(result.body) // { errorCode: 40401, message: 'Subject not found.' }
 }
 ```
 
