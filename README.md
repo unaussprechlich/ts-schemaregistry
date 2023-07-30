@@ -1,3 +1,5 @@
+![npm badge](https://img.shields.io/npm/v/ts-schemaregistry.svg)
+
 # ts-schemaregistry
 
 is a fully typed REST API client for the [confluent-schema-registry](https://github.com/kafkajs/confluent-schema-registry). It enables seamless interaction with the Confluent Schema Registry service using TypeScript. Build with [zod](https://github.com/colinhacks/zod), [ts-rest](https://github.com/ts-rest/ts-rest), and [axios](https://github.com/axios/axios).
