@@ -58,7 +58,7 @@ export default function (c: ReturnType<typeof initContract>) {
                 200: z.array(
                   z.object({
                     subject: z.string(),
-                    versions: z.number().int(),
+                    version: z.number().int(),
                   }),
                 ),
                 404: SchemaRegistryErrors[40401],
