@@ -58,8 +58,10 @@ export default function (c: ReturnType<typeof initContract>) {
               version: z.number().int(),
               schema: z.string(),
             }),
-            409: SchemaRegistryErrors[409],
-            422: SchemaRegistryErrors[42201],
+            404: z.union([
+              SchemaRegistryErrors[40401],
+              SchemaRegistryErrors[40403],
+            ]),
             500: z.union([
               SchemaRegistryErrors[50001],
               SchemaRegistryErrors[50002],

@@ -11,14 +11,18 @@ is a fully typed REST API client for the [confluent-schema-registry](https://git
 - Built-in confluent errors for easy error handling.
 
 ### Usage
+Create the client using the SchemaRegistryClient class. This class exposes the complete and type-safe API and API-contract of the Confluent Schema Registry. 
 ```typescript
 import { SchemaRegistryClient } from 'ts-schemaregistry';
 
 const registry = new SchemaRegistryClient({
   baseUrl: 'http://localhost:8081',
 });
-
-const result = await registry.client.subjects.get();
+```
+A simple get request to list all subjects can be done like this. The result is typed with statuscodes and response bodies. Therefore, the type can be narrowed down by checking the statuscode.
+```typescript
+const result = await registry.client
+    .subjects.get();
 
 if(result.status === 200) {// result.body as z.array(z.string)
   console.log(result.body) // ['subject1', 'subject2', ...]
@@ -27,6 +31,34 @@ if(result.status === 200) {// result.body as z.array(z.string)
 }
 ```
 
-### Future Work
-- Bundling & Polishing & Testing
+The type of the request and response can be inferred from the API-contract.
+```typescript
+const request: SchemaRegistryClientInferRequest<
+    typeof this.registry.contract
+        .subjects.subject.versions.version.get
+> = {
+    params: { 
+        subject: subjectName, 
+        version: version 
+    },
+};
+
+const result = await this.registry.client
+    .subjects.subject.versions.version.get(request);
+
+if(result.status === 200) { 
+    // Do something with result.body
+} else if(result.status === 404) {
+    //Throw a built-in ConfluentError with the request and response
+    throw new ConfluentError(
+        this.registry.contract
+            .subjects.subject.versions.version.get,
+        request,
+        response,
+    );
+}
+```
+
+### Future Work v1
+- Bundling & Polishing & Documenting & Testing
 - Extend types for Metadata, Rules, and Raw Schemas
