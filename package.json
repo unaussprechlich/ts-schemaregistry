@@ -1,6 +1,6 @@
 {
   "name": "ts-schemaregistry",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Fully typed API client for the Confluent Schema Registry.",
   "main": "./dist/index.js",
   "keywords": ["confluent","schema-registry", "schema", "registry", "typescript", "api", "client", "zod","ts-rest"],

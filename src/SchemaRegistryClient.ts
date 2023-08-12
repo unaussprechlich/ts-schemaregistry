@@ -32,7 +32,7 @@ export class SchemaRegistryApi<
   Config extends SchemaRegistryClientConfig = SchemaRegistryClientConfig,
 > {
   readonly client: InitClientReturn<Router, typeof defaultConfig & Config>;
-  readonly contract = SchemaRegistryContract;
+  readonly contract: Router = SchemaRegistryContract;
 
   constructor(config: Config) {
     this.client = initClient<Router, typeof defaultConfig & Config>(
